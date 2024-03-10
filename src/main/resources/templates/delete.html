@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+<div th:replace="navbar_fragment"></div>
+<p>are you shore to delete task: </p><span> </span> <p th:text="${task.title}"></p>
+<form action="/tasks/delete/" method="post">
+    <input type="hidden" name="id" th:value="${task.id}">
+    <button type="submit">Delete</button>
+</form>
+<br>
+<br>
+<a href="/tasks"><button>Back</button> </a>
+</body>
+</html>

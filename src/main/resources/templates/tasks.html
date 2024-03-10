@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<style>
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    button {
+        padding: 6px 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+<div th:replace="navbar_fragment"></div>
+<br>
+<br>
+<form action="/tasks" method="post">
+    <label for="status">Sorted by:</label><br>
+    <select id="status" name="stat">
+        <option value="Not Started">By Deadline</option>
+        <option value="In Progress">By Status</option>
+    </select><br><br>
+
+    <button type="submit">Sort</button>
+</form>
+<br>
+<br>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Created date</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <th:block  th:each="task, stat: ${tasks}" >
+            <tr>
+                <td th:text="${stat.count}"></td>
+                <td th:text="${task.title}"></td>
+                <td th:text="${task.created}"></td>
+                <td th:text="${task.deadline}"></td>
+                <td th:text="${task.stat}"></td>
+                <td> <a th:href="@{/tasks/read/{id}(id=${task.getId()})}"><button>Read</button> </a> </td>
+                <td> <a th:href="@{/tasks/delete/{id}(id=${task.getId()})}"><button>Delete</button> </a> </td>
+                <td> <a th:href="@{/tasks/status/{id}(id=${task.getId()})}"><button>Change Status</button> </a> </td>
+            </tr>
+        </th:block>
+    </table>
+<br>
+<br>
+ <a href="/tasks/add"><button>Add Task</button> </a>
+</body>
+</html>

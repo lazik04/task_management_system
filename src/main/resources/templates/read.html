@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Read</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+<div th:replace="navbar_fragment"></div>
+<p th:text="${task.description}"></p>
+</body>
+</html>

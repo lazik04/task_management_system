@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+<div th:replace="navbar_fragment"></div>
+<form action="/tasks/status/" method="POST">
+
+    <label for="status">Status:</label><br>
+    <input type="text" id="status" name="stat"><br>
+    <input type="hidden" name="id" th:value="${id}">
+    <br><br>
+
+    <button type="submit">Change</button>
+</form>
+</body>
+</html>

@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Task Management</title>
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-<p>Home Page</p>
+<div th:replace="navbar_fragment"></div>
+
+<div class="container">
+    <section class="info">
+        <h2>Welcome to the Task Management System</h2>
+        <p>
+            The Task Management System is a simple application designed to help users manage their tasks effectively.
+            It provides basic functionality for creating, updating, and deleting tasks, as well as marking tasks as completed.
+        </p>
+        <p>
+            With our system, you can easily keep track of your tasks, set due dates, and prioritize your work.
+            Whether you're a student, professional, or anyone needing to manage tasks, our system is here to help streamline your workflow.
+        </p>
+    </section>
+</div>
 </body>
 </html>
