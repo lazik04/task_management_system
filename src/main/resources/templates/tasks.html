@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Tasks</title>
-    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <style>
-
+.completed{
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #4CAF50;
+}
     table {
         width: 100%;
         border-collapse: collapse;
@@ -42,6 +45,7 @@
     button:hover {
         background-color: #0056b3;
     }
+
 </style>
 <body>
 <div th:replace="navbar_fragment"></div>
@@ -69,8 +73,38 @@
             <th></th>
             <th></th>
         </tr>
-        <th:block  th:each="task, stat: ${tasks}" >
-            <tr>
+        <th:block  th:each="task, stat: ${tasks}">
+            <th:block th:if="${task.stat}eq 'To Do' or ${task.stat}eq 'In Progress'">
+                <tr>
+                    <td th:text="${stat.count}"></td>
+                    <td th:text="${task.title}"></td>
+                    <td th:text="${task.created}"></td>
+                    <td th:text="${task.deadline}"></td>
+                    <td th:text="${task.stat}"></td>
+                    <td> <a th:href="@{/tasks/read/{id}(id=${task.getId()})}"><button>Read</button> </a> </td>
+                    <td> <a th:href="@{/tasks/delete/{id}(id=${task.getId()})}"><button>Delete</button> </a> </td>
+                    <td> <a th:href="@{/tasks/status/{id}(id=${task.getId()})}"><button>Change Status</button> </a> </td>
+                </tr>
+            </th:block>
+        </th:block>
+    </table>
+<br>
+<br>
+<h4>Completed </h4>
+<table class="completed">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Created date</th>
+        <th>Deadline</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <th:block  th:each="task, stat: ${tasks}">
+        <th:block th:if="${task.stat} eq 'Completed'">
+            <tr class="completed-tr">
                 <td th:text="${stat.count}"></td>
                 <td th:text="${task.title}"></td>
                 <td th:text="${task.created}"></td>
@@ -81,9 +115,11 @@
                 <td> <a th:href="@{/tasks/status/{id}(id=${task.getId()})}"><button>Change Status</button> </a> </td>
             </tr>
         </th:block>
-    </table>
+    </th:block>
+</table>
 <br>
 <br>
+
  <a href="/tasks/add"><button>Add Task</button> </a>
 </body>
 </html>

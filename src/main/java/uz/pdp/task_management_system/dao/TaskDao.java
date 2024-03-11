@@ -27,7 +27,7 @@ public class TaskDao {
         return jdbcTemplate.query("select tasks.id,tasks.title, tasks.created ,tasks.deadline ,tasks.stat from tasks",new BeanPropertyRowMapper<>( Task.class));
     }
 
-    public void save(String title, String description, String deadline, String status) {
+    public void save(String title, String description, Date deadline, String status) {
         jdbcTemplate.update("insert into tasks(title , description, deadline, stat ) values (?,?,?,?)",
                title,description,deadline,status
         );
@@ -40,7 +40,7 @@ public class TaskDao {
             task.setId(rs.getLong("id"));
             task.setTitle(rs.getString("title"));
             task.setDescription(rs.getString("description"));
-            task.setDeadline(rs.getString("deadline"));
+            task.setDeadline(rs.getDate("deadline"));
             return task;
         });
     }

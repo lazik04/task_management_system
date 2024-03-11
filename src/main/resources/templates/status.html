@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
 <div th:replace="navbar_fragment"></div>
 <form action="/tasks/status/" method="POST">
 
-    <label for="status">Status:</label><br>
-    <input type="text" id="status" name="stat"><br>
+    <label for="stat">Status:</label><br>
+    <select id="stat" name="stat">
+        <option value="To Do">To Do</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+    </select><br><br>
     <input type="hidden" name="id" th:value="${id}">
-    <br><br>
-
     <button type="submit">Change</button>
 </form>
 </body>

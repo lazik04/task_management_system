@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
     <link rel="stylesheet" href="../static/css/add.css">
-    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
 <div th:replace="navbar_fragment"></div>
@@ -22,9 +21,12 @@
         <label for="deadline">Deadline:</label><br>
         <input type="date" id="deadline" name="deadline"><br>
 
-        <label for="status">Status:</label><br>
-        <input type="text" id="status" name="stat"><br>
-        <br><br>
+        <label for="stat">Status:</label><br>
+        <select id="stat" name="stat">
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select><br><br>
 
         <button type="submit">Add Task</button>
     </form>

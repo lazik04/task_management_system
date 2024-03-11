@@ -9,6 +9,8 @@ import uz.pdp.task_management_system.dao.TaskDao;
 import uz.pdp.task_management_system.dto.TaskDto;
 import uz.pdp.task_management_system.service.TaskService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -44,7 +46,14 @@ public class TaskController {
                             @RequestParam("description") String description,
                             @RequestParam("deadline") String deadline,
                             @RequestParam("stat") String status) {
-        taskDao.save(title,description,deadline,status);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date deadline1 = null;
+        try {
+            deadline1 = dateFormat.parse(deadline);
+        } catch (ParseException e) {
+            e.printStackTrace(); // Handle parsing exception if needed
+        }
+        taskDao.save(title,description,deadline1,status);
         modelAndView.setViewName("redirect:/tasks");
         return modelAndView;
     }

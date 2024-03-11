@@ -11,6 +11,6 @@ import java.util.Date;
 public class TaskDto {
     private String title;
     private String description;
-    private String deadline;
+    private Date deadline;
     private String stat;
 }

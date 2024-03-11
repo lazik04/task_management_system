@@ -9,7 +9,12 @@ import java.util.List;
 @Repository
 public class TaskService {
     public List<Task> sortByStatus(List<Task> tasks) {
-        tasks.sort(Comparator.comparing(Task::getStat));
+        tasks.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getStat().compareTo(task2.getStat());
+            }
+        });
         return tasks;
     }
 
